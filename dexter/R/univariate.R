@@ -60,3 +60,11 @@ univariate_plots <- function(input_data, continuous_cols, categorical_cols){
               continuous_box_plots = continuous_boxes, 
               continuous_histograms = continuous_hists))
 }
+
+plot_univariates <- function(plot_list){
+  for (plots in plot_list) {
+    n <- length(plots)
+    n_col <- floor(sqrt(n))
+    do.call("grid.arrange", c(plots, ncol=n_col))  
+  }
+}
