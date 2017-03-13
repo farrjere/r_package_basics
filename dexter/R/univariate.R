@@ -11,4 +11,5 @@ univariate_analysis <-function(input_data, continuous_cols, continuous_threshold
   #Categorical columns are simply those that aren't continuous then
   not_continuous = !(names(input_data) %in% continuous_cols)
   cat_cols = names(input_data[,not_continuous,with=FALSE])
+  return(list(continuous=continuous_cols, categoricals=cat_cols))
 }
