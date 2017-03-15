@@ -19,9 +19,9 @@
 #' @export
 #'
 #' @examples
-#' results = univariate_analysis(mtcars)
-#' results = univariate_analysis(mtcars, c('cyl', 'am', 'gear', 'carb'))
-#' results = univariate_analysis(mtcars, continuous_threshold=3)
+#' \dontrun{results = univariate_analysis(mtcars)}
+#' \dontrun{results = univariate_analysis(mtcars, c('cyl', 'am', 'gear', 'carb'))}
+#' \dontrun{results = univariate_analysis(mtcars, continuous_threshold=3)}
 univariate_analysis <-function(input_data, continuous_cols, continuous_threshold = 5){
   #Make sure we are dealing with a data.table
   input_data = data.table::data.table(input_data)
@@ -98,8 +98,8 @@ univariate_plots <- function(input_data, continuous_cols, categorical_cols){
 #' @export
 #'
 #' @examples
-#' results = univariate_analysis(mtcars)
-#' plot_univariates(results$plots)
+#' \dontrun{results = univariate_analysis(mtcars)}
+#' \dontrun{plot_univariates(results$plots)}
 plot_univariates <- function(plot_list){
   for (plots in results$plots) {
     n <- length(plots)

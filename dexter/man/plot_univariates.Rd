@@ -16,6 +16,6 @@ plot_univariates(plot_list)
 This function is intended to be used with @seealso \code{\link{univariate_analysis}}
 }
 \examples{
-results = univariate_analysis(mtcars)
-plot_univariates(results$plots)
+\dontrun{results = univariate_analysis(mtcars)}
+\dontrun{plot_univariates(results$plots)}
 }

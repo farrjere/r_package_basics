@@ -32,7 +32,7 @@ Used to help ease the process of doing univariate analysis.
 For help with plotting of the results @seealso \code{\link{plot_univariates}}
 }
 \examples{
-results = univariate_analysis(mtcars)
-results = univariate_analysis(mtcars, c('cyl', 'am', 'gear', 'carb'))
-results = univariate_analysis(mtcars, continuous_threshold=3)
+\dontrun{results = univariate_analysis(mtcars)}
+\dontrun{results = univariate_analysis(mtcars, c('cyl', 'am', 'gear', 'carb'))}
+\dontrun{results = univariate_analysis(mtcars, continuous_threshold=3)}
 }
