@@ -1,10 +1,10 @@
 Package: dexter
-Title: What the Package Does (one line, title case)
+Title: A package to aid in initial data exploration of datasets. 
 Version: 0.0.0.9000
-Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+Authors@R: c(person("Jeremy", "Farrell", email = "jeremy@jeremyfarrell.me", role = c("aut", "cre")), person("Tim", "Long", email = 'tlong@eadds.com', role = c("ctb", "cph")), person("Colin", "Ard", email = 'tlong@eadds.com', role = c("exp", "mus")))
+Description: Aids data scientists in initial data exploration.  Provides utilities to perform univariate and bivariate analysis.  Written as part of a tutorial series on writing R packages, which can be found at <http://jeremyfarrell.me/r_package_basics>.
 Depends: R (>= 3.3.3)
-License: What license is it under?
+License: MIT
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1
