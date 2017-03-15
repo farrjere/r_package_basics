@@ -16,6 +16,8 @@
 #'       \item continuous_box_plots - box plots for continuous variables
 #'       \item continuous_histograms - histograms for continuous variables
 #'     }
+#' @import data.table
+#'
 #' @export
 #'
 #' @examples
