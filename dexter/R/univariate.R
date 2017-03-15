@@ -26,8 +26,8 @@ univariate_summaries <- function(input_data, continuous_cols, categorical_cols){
                      max=max(eval(x)),
                      mean=mean(eval(x)),
                      std_dev=sd(eval(x)),
-                     skew=moments::skewness(eval(x)),
-                     kurtosis=moments::kurtosis(eval(x))),]
+                     skew=ifelse(requireNamespace("moments", quietly = TRUE), moments::skewness(eval(x)), NA),
+                     kurtosis=ifelse(requireNamespace("moments", quietly = TRUE), moments::kurtosis(eval(x)), NA)),]
   })
 
   categorical_summaries = lapply(categorical_cols, function(x){input_data[,.N, x]})
