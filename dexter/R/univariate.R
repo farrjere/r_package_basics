@@ -101,9 +101,11 @@ univariate_plots <- function(input_data, continuous_cols, categorical_cols){
 #' results = univariate_analysis(mtcars)
 #' plot_univariates(results$plots)
 plot_univariates <- function(plot_list){
-  for (plots in plot_list) {
+  for (plots in results$plots) {
     n <- length(plots)
     n_col <- floor(sqrt(n))
-    do.call("grid.arrange", c(plots, ncol=n_col))
+    #getting a handle of the gridExtra::grid.arrange function so that we can use it to generate plots
+    grid_arange = get('grid.arrange', asNamespace('gridExtra'))
+    do.call(grid_arange, c(plots, ncol=n_col))
   }
 }
