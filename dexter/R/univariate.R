@@ -18,16 +18,16 @@ univariate_summaries <- function(input_data, continuous_cols, categorical_cols){
   continuous_summaries = lapply(continuous_cols, function(x){
     x = as.name(x)
     input_data[,list(min=min(eval(x)),
-                     lower=quantile(eval(x), 0.25), 
-                     median = median(eval(x)), 
-                     upper=quantile(eval(x), 0.75), 
-                     max=max(eval(x)), 
-                     mean=mean(eval(x)), 
-                     std_dev=sd(eval(x)), 
-                     skew=moments::skewness(eval(x)), 
+                     lower=quantile(eval(x), 0.25),
+                     median = median(eval(x)),
+                     upper=quantile(eval(x), 0.75),
+                     max=max(eval(x)),
+                     mean=mean(eval(x)),
+                     std_dev=sd(eval(x)),
+                     skew=moments::skewness(eval(x)),
                      kurtosis=moments::kurtosis(eval(x))),]
   })
-  
+
   categorical_summaries = lapply(categorical_cols, function(x){input_data[,.N, x]})
   return(list(categorical_summaries=categorical_summaries, continuous_summaries=continuous_summaries))
 }
@@ -40,7 +40,7 @@ univariate_plots <- function(input_data, continuous_cols, categorical_cols){
       ggplot2::geom_bar(ggplot2::aes_q(as.name(x)), fill='skyblue')+
       ggplot2::theme(panel.background = ggplot2::element_rect(fill='white'))
   })
-  
+
   continuous_boxes = lapply(continuous_cols, function(x){
     ggplot2::ggplot(input_data) +
       #geom_boxplot needs an x and y in its aesthetic, factor(0) just gives it a dummy factor
@@ -50,22 +50,24 @@ univariate_plots <- function(input_data, continuous_cols, categorical_cols){
       ggplot2::theme(panel.background = ggplot2::element_rect(fill='white'),
                      axis.title.y = ggplot2::element_blank())
   })
-  
+
   continuous_hists = lapply(continuous_cols, function(x){
     ggplot2::ggplot(input_data) +
       ggplot2::geom_histogram(ggplot2::aes_q(as.name(x)), fill='skyblue')+
       ggplot2::theme(panel.background = ggplot2::element_rect(fill='white'))
   })
-  
-  return(list(categorical_bar_charts = cat_bars, 
-              continuous_box_plots = continuous_boxes, 
+
+  return(list(categorical_bar_charts = cat_bars,
+              continuous_box_plots = continuous_boxes,
               continuous_histograms = continuous_hists))
 }
 
 plot_univariates <- function(plot_list){
-  for (plots in plot_list) {
+  for (plots in results$plots) {
     n <- length(plots)
     n_col <- floor(sqrt(n))
-    do.call("grid.arrange", c(plots, ncol=n_col))  
+    #getting a handle of the gridExtra::grid.arrange function so that we can use it to generate plots
+    grid_arange = get('grid.arrange', asNamespace('gridExtra'))
+    do.call(grid_arange, c(plots, ncol=n_col))
   }
 }
