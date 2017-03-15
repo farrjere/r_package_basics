@@ -1,3 +1,27 @@
+#' Utility for doing univariate analysis
+#'
+#' \code{univariate_analysis} returns a list of summaries and plots for univariate analysis.
+#'
+#' Used to help ease the process of doing univariate analysis.
+#' For help with plotting of the results @seealso \code{\link{plot_univariates}}
+#' @param input_data Any object that can be converted into a data.table, will be what the univariate analysis is conducted on
+#' @param continuous_cols A character vector containing the names of all columns that are considered continuous,
+#'     if not provided this will be calculated
+#' @param continuous_threshold Integer, representing the number of unique values a column must have in order to be
+#'     considered continuous.  This will default to 5 and will only be used if continuous_cols was not provided.
+#' @return A list of summaries and plots.  The summaries are split into continuous_summaries for the summary statistics of
+#'     continuous columns and categorical_summaries the categorical columns. The plots are divided into:
+#'     \itemize{
+#'       \item categorical_bar_charts - bar charts for categorical columns
+#'       \item continuous_box_plots - box plots for continuous variables
+#'       \item continuous_histograms - histograms for continuous variables
+#'     }
+#' @export
+#'
+#' @examples
+#' results = univariate_analysis(mtcars)
+#' results = univariate_analysis(mtcars, c('cyl', 'am', 'gear', 'carb'))
+#' results = univariate_analysis(mtcars, continuous_threshold=3)
 univariate_analysis <-function(input_data, continuous_cols, continuous_threshold = 5){
   #Make sure we are dealing with a data.table
   input_data = data.table::data.table(input_data)
@@ -64,6 +88,18 @@ univariate_plots <- function(input_data, continuous_cols, categorical_cols){
               continuous_histograms = continuous_hists))
 }
 
+#' Helper function for rendering univariate plots
+#'
+#' \code{plot_univariates} Renders univariate plots into 3 plots, one per plot type
+#'
+#' This function is intended to be used with @seealso \code{\link{univariate_analysis}}
+#' @param plot_list The plots list that univariate_analysis generated
+#'
+#' @export
+#'
+#' @examples
+#' results = univariate_analysis(mtcars)
+#' plot_univariates(results$plots)
 plot_univariates <- function(plot_list){
   for (plots in plot_list) {
     n <- length(plots)
